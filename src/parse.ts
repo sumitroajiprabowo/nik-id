@@ -77,6 +77,8 @@ import { validateNIK } from "./validate";
  *   console.log(prov?.name); // "JAWA BARAT"
  * }
  * ```
+ *
+ * @since 1.0.0
  */
 export function parseNIK(nik: string): NIKResult {
 	const validation = validateNIK(nik);
