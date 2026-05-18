@@ -30,6 +30,8 @@
  *   console.log(result.sequenceNumber);  // "0001"
  * }
  * ```
+ *
+ * @since 1.0.0
  */
 export interface NIKValid {
 	/** Selalu `true` — gunakan untuk narrowing discriminated union */
@@ -78,6 +80,8 @@ export interface NIKValid {
  *   console.log(result.error); // "NIK harus 16 digit"
  * }
  * ```
+ *
+ * @since 1.0.0
  */
 export interface NIKInvalid {
 	/** Selalu `false` — gunakan untuk narrowing discriminated union */
@@ -102,6 +106,8 @@ export interface NIKInvalid {
  *   console.log(result.error);
  * }
  * ```
+ *
+ * @since 1.0.0
  */
 export type NIKResult = NIKValid | NIKInvalid;
 
@@ -115,6 +121,8 @@ export type NIKResult = NIKValid | NIKInvalid;
  *   console.log("NIK valid!");
  * }
  * ```
+ *
+ * @since 1.0.0
  */
 export interface ValidationValid {
 	/** Selalu `true` */
@@ -131,6 +139,8 @@ export interface ValidationValid {
  *   console.log(result.error); // "NIK harus 16 digit"
  * }
  * ```
+ *
+ * @since 1.0.0
  */
 export interface ValidationInvalid {
 	/** Selalu `false` */
@@ -143,6 +153,8 @@ export interface ValidationInvalid {
  * Discriminated union hasil validasi NIK.
  *
  * Lebih ringan dari {@link NIKResult} — cuma cek valid/tidak tanpa parsing.
+ *
+ * @since 1.0.0
  */
 export type ValidationResult = ValidationValid | ValidationInvalid;
 
@@ -162,6 +174,8 @@ export type ValidationResult = ValidationValid | ValidationInvalid;
  * // Wilayah spesifik (Kec. Nagreg, Kab. Bandung, Jawa Barat)
  * generateNIK({ provinceCode: "32", regencyCode: "3204", districtCode: "320407" });
  * ```
+ *
+ * @since 1.0.0
  */
 export interface GenerateOptions {
 	/**
