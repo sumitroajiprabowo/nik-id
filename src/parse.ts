@@ -28,26 +28,8 @@
  */
 
 import type { NIKResult } from "./types";
+import { disambiguateYear } from "./utils";
 import { validateNIK } from "./validate";
-
-/**
- * Disambiguasi tahun 2 digit menjadi tahun penuh 4 digit.
- *
- * Aturan:
- * - Kalau YY lebih besar dari 2 digit terakhir tahun sekarang → 1900 + YY
- * - Kalau YY lebih kecil atau sama → 2000 + YY
- *
- * Contoh (asumsi tahun sekarang 2026):
- * - YY = 85 → 1985 (karena 85 > 26)
- * - YY = 02 → 2002 (karena 02 ≤ 26)
- *
- * @param yy - Tahun 2 digit (0-99)
- * @returns Tahun penuh 4 digit
- */
-function disambiguateYear(yy: number): number {
-	const currentYY = new Date().getFullYear() % 100;
-	return yy > currentYY ? 1900 + yy : 2000 + yy;
-}
 
 /**
  * Parse NIK menjadi komponen-komponennya.
