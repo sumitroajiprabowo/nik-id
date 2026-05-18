@@ -110,6 +110,8 @@ function isValidCalendarDate(year: number, month: number, day: number): boolean 
  * validateNIK("3204076508850000");
  * // { valid: false, error: "Nomor urut tidak valid" }
  * ```
+ *
+ * @since 1.0.0
  */
 export function validateNIK(nik: string): ValidationResult {
 	// 1. Cek tipe data
