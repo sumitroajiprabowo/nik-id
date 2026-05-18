@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20-green.svg)](https://nodejs.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](https://www.npmjs.com/package/nik-id)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://www.npmjs.com/package/nik-id)
+[![codecov](https://codecov.io/gh/sumitroajiprabowo/nik-id/graph/badge.svg?token=FZXXOCKZY1)](https://codecov.io/gh/sumitroajiprabowo/nik-id)
 
 Parser, validator, dan generator **NIK** (Nomor Induk Kependudukan) Indonesia.
 
