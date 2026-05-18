@@ -1,6 +1,7 @@
 # nik-id
 
 [![npm version](https://img.shields.io/npm/v/nik-id.svg)](https://www.npmjs.com/package/nik-id)
+[![npm downloads](https://img.shields.io/npm/dm/nik-id.svg)](https://www.npmjs.com/package/nik-id)
 [![CI](https://github.com/sumitroajiprabowo/nik-id/actions/workflows/ci.yml/badge.svg)](https://github.com/sumitroajiprabowo/nik-id/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
