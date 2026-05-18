@@ -6,8 +6,37 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
+  lint:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+
   test:
+    name: Test (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,7 +48,49 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
       - run: npm ci
-      - run: npm run typecheck
-      - run: npm run lint
       - run: npm run test:coverage
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck, test]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
       - run: npm run build
+      - name: Verify dist output
+        run: |
+          test -f dist/index.js
+          test -f dist/index.cjs
+          test -f dist/index.d.ts
+          test -f dist/validate.js
+          test -f dist/validate.cjs
+          test -f dist/validate.d.ts
+          test -f dist/parse.js
+          test -f dist/parse.cjs
+          test -f dist/parse.d.ts
+          test -f dist/generate.js
+          test -f dist/generate.cjs
+          test -f dist/generate.d.ts
+          test -f dist/types.d.ts
+          echo "All expected dist files exist"
+      - name: Test CJS import
+        run: node -e "const m = require('./dist/index.cjs'); const r = m.validateNIK('3204071508850001'); if (!r.valid) throw new Error('CJS validation failed'); console.log('CJS OK')"
+      - name: Test ESM import
+        run: node --input-type=module -e "import { validateNIK } from './dist/index.js'; const r = validateNIK('3204071508850001'); if (!r.valid) throw new Error('ESM validation failed'); console.log('ESM OK')"
+
+  audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=moderate
