@@ -25,6 +25,7 @@
  */
 
 import type { ValidationResult } from "./types";
+import { disambiguateYear } from "./utils";
 
 /**
  * Range kode provinsi Kemendagri yang valid.
@@ -58,27 +59,6 @@ const DIGITS_ONLY_PATTERN = /^\d{16}$/;
 function isValidCalendarDate(year: number, month: number, day: number): boolean {
 	const date = new Date(year, month - 1, day);
 	return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
-}
-
-/**
- * Disambiguasi tahun 2 digit menjadi tahun penuh 4 digit.
- *
- * Aturan:
- * - Kalau YY lebih besar dari 2 digit terakhir tahun sekarang → 1900 + YY
- * - Kalau YY lebih kecil atau sama → 2000 + YY
- *
- * Contoh (asumsi tahun sekarang 2026):
- * - YY = 85 → 1985 (karena 85 > 26)
- * - YY = 02 → 2002 (karena 02 ≤ 26)
- * - YY = 26 → 2026 (karena 26 ≤ 26)
- * - YY = 27 → 1927 (karena 27 > 26)
- *
- * @param yy - Tahun 2 digit (0-99)
- * @returns Tahun penuh 4 digit
- */
-function disambiguateYear(yy: number): number {
-	const currentYY = new Date().getFullYear() % 100;
-	return yy > currentYY ? 1900 + yy : 2000 + yy;
 }
 
 /**
