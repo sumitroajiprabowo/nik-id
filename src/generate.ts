@@ -159,6 +159,8 @@ function randomBirthDate(): Date {
  * });
  * // "3204071508900001"
  * ```
+ *
+ * @since 1.0.0
  */
 export function generateNIK(options: GenerateOptions = {}): string {
 	const { gender, birthDate } = options;
