@@ -69,6 +69,7 @@
     "format": "biome format --write src/ tests/",
     "format:check": "biome format src/ tests/",
     "typecheck": "tsc --noEmit",
+    "audit": "npm audit --audit-level=moderate",
     "prepublishOnly": "npm run typecheck && npm run lint && npm run test:coverage && npm run build"
   },
   "keywords": [
