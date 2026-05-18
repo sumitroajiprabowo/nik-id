@@ -55,7 +55,7 @@ if (parsed.valid) {
 	console.log("Kode provinsi:   ", parsed.provinceCode);
 	console.log("Kode kabupaten:  ", parsed.regencyCode);
 	console.log("Kode kecamatan:  ", parsed.districtCode);
-	console.log("Tanggal lahir:   ", parsed.birthDate.toISOString().split("T")[0]);
+	console.log("Tanggal lahir:   ", parsed.birthDate.toLocaleDateString("id-ID"));
 	console.log("Gender:          ", parsed.gender === "F" ? "Perempuan" : "Laki-laki");
 	console.log("Nomor urut:      ", parsed.sequenceNumber);
 }
